@@ -1,0 +1,4 @@
+20130331:java location judgment
+20130331:download android adt,install it,and build develop environment
+20130402:explorer can not load js,clear cache
+20130429:the most perfect user experience

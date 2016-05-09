@@ -1,0 +1,241 @@
+Path:C:\Program Files\MySQL\MySQL Server 5.6\bin;
+
+mysql -u root -p 
+
+create database greenway default charset=utf8;
+
+use greenway
+
+create table user
+(
+id int auto_increment not null,
+name varchar(50) not null,
+password varchar(50) not null,
+state int not null,
+primary key(id)
+);
+
+create table message
+(
+id int auto_increment not null,
+user_id int not null,
+date datetime not null,
+content text,
+foreign key (user_id) references user (id),
+PRIMARY KEY(id)
+)
+
+
+create table article
+(
+id int auto_increment not null,
+title varChar(50) not null,
+author varchar(50) not null,
+date datetime not null,
+gro int not null,
+content text,
+state int not null,
+foreign key (gro) references gro (id),
+PRIMARY KEY(id)
+);
+
+
+
+create table gro
+(
+id int auto_increment not null,
+name varChar(50) not null,
+build_date datetime not null,
+greater int not null,
+
+PRIMARY KEY(id)
+);
+
+
+
+create table user_group_structure(
+id int auto_increment not null,
+user_id int not null,
+group_id int not null,
+add_date datetime not null,
+foreign key (user_id) references user (id),
+foreign key (group_id) references gro (id),
+PRIMARY KEY(id)
+);
+
+
+create table pic(
+idpic int not null auto_increment,
+caption varchar(45) not null default '',
+img blob not null,
+PRIMARY KEY (idpic)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+create table gentie(
+id int auto_increment not null,
+article_id int not null,
+user_id int not null,
+add_date datetime not null,
+foreign key (user_id) references user (id),
+foreign key (article_id) references article (id),
+PRIMARY KEY(id)
+)
+
+
+create table resume_basic_info(
+id int auto_increment not null,
+first_name varchar(10) not null,
+last_name varchar(10) not null,
+date_of_birth datetime not null,
+gender int not null,
+id_type int not null,
+id_number varchar(25) not null,
+residency varchar(30) not null,
+email varchar(50) not null,
+current_salary varchar(30),
+currency varchar(20),
+yrs_of_experience varchar(20) not null,
+hukou varchar(10),
+current_situation varchar(20) not null,
+mobile_phone varchar(30),
+home_tel varchar(30),
+hork_tel varchar(30),
+
+nation_region varchar(20),
+height int,
+marital_status varchar(20),
+political_status varchar(20),
+postal_code varchar(20),
+qq_id varchar(50),
+address varchar(100),
+website varchar(100),
+PRIMARY KEY(id)
+)
+
+create table education(
+id int auto_increment not null,
+rbi_id int not null,
+time_period_1 datetime not null,
+time_period_2 datetime not null,
+school varchar(30) not null,
+major varchar(50) not null,
+degree varchar(20) not null,
+description text,
+overseas bool,
+foreign key (rbi_id) references resume_basic_info(id),
+PRIMARY KEY(id)
+)
+
+create table group_label(
+id int auto_increment not null,
+name varchar(10) not null,
+PRIMARY KEY(id)
+)
+
+create table link_store
+(
+id int auto_increment not null,
+link varchar(100) not null,
+visited int not null,
+visited_time datetime,
+
+PRIMARY KEY(id)
+);
+
+create table page
+(
+id int auto_increment not null,
+web_page MediumBlob,
+
+PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table user_group_structure;
+drop table gro;
+drop table user;
+drop table pic;
+drop table article;
+
+
+ERROR 1215 (HY000): Cannot add foreign key constraint
+alter table user engine=innodb;
+alter table user modify column id int;
+alter table user add column email varchar(30);
+alter table user modify column email varchar(30) not null default 'ld.zhengm@gmail.com'
+alter table gro add column summarize text;
+alter table gro add column lable varchar(100);
+alter table gentie add column content text;
+alter table gentie modify column content not null;
+alter table link_store modify column link text not null;
+
+
+select * from w_user;
+select name from user_group_structure,gro where user_group_structure.group_id=gro.id and user_id=1;
+select count(*) from article a where gro=1;
+select * from article where gro in(select group_id from user_group_structure where user_id=1) order by date desc
+select count(*) from gro where lable like '%a%';
+select gro.lable,count(*) from gro where lable like '%a%' group by gro.lable;
+update user set email='ld.zhengm@gmail.com'
+update gro set lable='abcde';
+
+insert into user values (1,'wangkang','wk123456',1);
+insert into user values (2,'zhangsan','123456',0);
+insert into user values (3,'lisi','123456',1);
+insert into user values (4,'wangwu','123456',1);
+insert into article values(1,'titletitletitle1','author1','2013-03-07 17:20:35',1,'contentcontentcontentcontent',1);
+insert into article values(2,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(3,'titletitletitle3','author3','2013-03-09 17:20:37',1,'contentcontentcontentcontent',1);
+insert into article values(4,'titletitletitle4','author4','2013-03-10 17:20:38',1,'contentcontentcontentcontent',1);
+insert into article values(5,'titletitletitle5','author5','2013-03-11 17:20:39',1,'contentcontentcontentcontent',1);
+insert into gro values(1,'name1','2013-03-11 17:20:39',1);
+insert into gro values(2,'name2','2013-03-11 17:20:39',1);
+insert into gro values(3,'name3','2013-03-11 17:20:39',1);
+insert into gro values(4,'name4','2013-03-11 17:20:39',1);
+insert into gro values(null,'name5','2013-04-11 17:20:39',3);
+insert into gro values(null,'name6','2013-04-11 17:20:39',3);
+insert into gro values(null,'name7','2013-04-11 17:20:39',3);
+insert into user_group_structure values(1,1,1,'2013-04-11 17:20:39');
+insert into user_group_structure values(2,1,2,'2013-04-11 17:20:39');
+insert into user_group_structure values(3,1,3,'2013-04-11 17:20:39');
+insert into user_group_structure values(4,3,1,'2013-04-11 17:20:39');
+insert into user_group_structure values(5,4,1,'2013-04-11 17:20:39');
+insert into user_group_structure values(6,3,2,'2013-04-11 17:20:39');
+
+insert into article values(1,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(2,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(6,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(7,'titletitletitle3','author3','2013-03-09 17:20:37',1,'contentcontentcontentcontent',1);
+insert into article values(8,'titletitletitle4','author4','2013-03-10 17:20:38',1,'contentcontentcontentcontent',1);
+
+insert into article values(9,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(10,'titletitletitle3','author3','2013-03-09 17:20:37',1,'contentcontentcontentcontent',1);
+insert into article values(11,'titletitletitle4','author4','2013-03-10 17:20:38',1,'contentcontentcontentcontent',1);
+
+insert into article values(12,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(13,'titletitletitle3','author3','2013-03-09 17:20:37',1,'contentcontentcontentcontent',1);
+insert into article values(14,'titletitletitle4','author4','2013-03-10 17:20:38',1,'contentcontentcontentcontent',1);
+
+insert into article values(15,'titletitletitle2','author2','2013-02-08 17:20:36',1,'contentcontentcontentcontent',1);
+insert into article values(16,'titletitletitle3','author3','2013-03-09 17:20:37',1,'contentcontentcontentcontent',1);
+insert into article values(17,'titletitletitle4','author4','2013-03-10 17:20:38',1,'contentcontentcontentcontent',1);
+
+insert into article values(18,'titletitletitle2','author1','2013-03-07 17:20:35',1,'contentcontentcontentcontent',1);
+insert into article values(19,'titletitletitle3','author3','2013-03-09 17:20:37',2,'contentcontentcontentcontent',1);
+insert into article values(20,'titletitletitle4','author4','2013-03-10 17:20:38',2,'contentcontentcontentcontent',1);
+insert into article values(21,'titletitletitle5','author5','2013-03-11 17:20:39',2,'contentcontentcontentcontent',1);
+
+insert into gentie values (1,1,1,'2013-03-07');
+insert into gentie values (2,1,1,'2013-03-07');
+insert into gentie values (3,1,1,'2013-03-07');
+insert into gentie values (4,2,1,'2013-03-07');
+insert into gentie values (5,2,1,'2013-03-07');
+insert into gentie values (6,2,1,'2013-03-07');
+
+insert into message values(1,1,'2013.04.27 20:33:05','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+insert into message values(2,1,'2013.04.27 20:33:06','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+insert into message values(3,1,'2013.04.27 20:33:07','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+insert into message values(4,1,'2013.04.27 20:33:08','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+insert into message values(5,1,'2013.04.27 20:33:09','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+   
+   <package name="pkg_1" extends="json-default">
+   <!-- userAction -->
+       <action name="user" class="userAction">
+            <exception-mapping result="usernameInvalid" exception="com.greenway.exception.UsernameException" />
+            <exception-mapping result="passwordInvalid" exception="com.greenway.exception.PasswordException" />
+            
+            <result name="input">/index.jsp</result><result name="success">/personal_homepage.jsp</result>
+       </action>
+       <action name="rgst">
+            <result>/regist.jsp</result>
+       </action>
+       <action name="json">
+            <result>/json.jsp</result>
+       </action>
+       <action name="search_grid">
+            <result>/live_search_grid.jsp</result>
+       </action>
+       <action name="time_line">
+            <result>/time_line.jsp</result>
+       </action>
+       <action name="login_index">
+            <result>/login_index.jsp</result>
+       </action>
+       <action name="regist" class="userAction" method="regist">
+            <result name="success">/index.jsp</result>
+            <result name="input">/regist.jsp</result>
+       </action>
+       <!-- groupAction -->
+       <action name="getGroupsByUserId" class="groupAction" method="getGroupsByUserId">
+            <result name="list_group_success">/user_groups.jsp</result>
+       </action>
+       <!-- articleAction -->
+       <action name="listArticleByGroupId" class="articleAction" method="listArticleByGroupId">
+            <result name="list_suc">/list_article.jsp</result>
+       </action>
+       <action name="getCorrentArticle" class="articleAction" method="getCorrentArticle">
+            <result name="get_suc">/corrent_article.jsp</result>
+       </action>
+       <action name="listNote" class="com.greenway.struts.action.impl.JsonAction" method="jsonExecute">
+            <result type="json"></result>
+       </action>
+       <!-- testAction -->
+       <action name="test" class="testAction">
+            <result name="result">/ip_result.jsp</result>
+       </action>
+       <!-- messageAction -->
+       <action name="sendMessage" class="messageAction" method="sendMessage">
+            <!--<result type="json" >
+                 <param name="root">result</param>
+            </result> -->
+             <result name="success" type="json">
+                 <param name="root">result</param>
+             </result>
+       </action>
+       <!-- timeLineAction -->
+       
+       <action name="drawTimeLine" class="timeLineActionAction" method="drawTimeLine">
+             <result name="success" type="json">
+                 <param name="root">result</param>
+             </result>
+       </action>
+       
+       <!-- loginAction -->
+       <action name="login" class="loginAction">
+            <result name="success">/personal_homepage.jsp</result>
+       </action>
+   </package>
+
+</struts>    

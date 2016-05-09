@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="greenway_20130308"
+  id="myeclipse.1363270102625"
+  context-root="/greenway_20130308"
+  j2ee-spec="5.0"
+  archive="greenway_20130308.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

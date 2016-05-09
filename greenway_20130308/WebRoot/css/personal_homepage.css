@@ -1,0 +1,35 @@
+body {
+  color: #000;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, Palatino, serif;
+  }
+div
+{
+  font-size:14px;
+  display: block;
+  font-family:Verdana, Arial;
+  margin-left:200px;
+  background-color:#fff;
+  color: blue;
+  width:800px;
+}
+#message a
+{
+  color: blue;
+  text-decoration: none;
+}
+#message a:hover 
+{
+background:#E5F4FF;
+}
+#result a
+{
+  color: blue;
+  text-decoration: none;
+}
+#result a:hover 
+{
+background:#E5F4FF;
+}

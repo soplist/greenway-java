@@ -1,0 +1,278 @@
+@charset "utf-8";
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #333333;
+    font: Times New Roman;
+}
+body,button, ul, ol, li, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, pre {
+    font-family: 'Times New Roman';
+    font-size:13px;
+    list-style: none outside none;
+    margin: 1px;
+    padding: 0;
+    text-decoration: none;
+}
+
+.header_logout .header {
+    border-bottom: 1px solid #EEEEEE;
+    margin-top:3px;
+    margin-left:5px;
+    margin-right:5px;
+    box-shadow: -2px 0 5px green,0 -2px 5px blue,0 2px 5px red,2px 0 5px yellow;
+    height: 40px;
+    overflow: hidden;
+    padding: 15px 0;
+}
+.header .dl {
+    height: 50px;
+    margin: 0 0 0 10px;
+    width: 1200px;
+    padding: 0px 0;
+}
+.header_logout #logo {
+    margin: -5px 0;
+    width: 120px;
+}
+#menu a, #left ul, input:focus, select:focus, .input_btn, #logo, .BidScheme dl, .backToTop, #QP_Contact, #QP_Login, .transition {
+    transition: all 0.5s ease-in-out 0s;
+}
+#logo a, .header .menu li, .header .menu a {
+    transition: all 0.5s ease-in-out 0s;
+}
+.header .dd {
+    float: left;
+    margin-left:5px;
+    height: 50px;
+    padding: 0px 0;
+}
+.header_logout #logo a {
+    background: url("../img/logo.jpg") no-repeat scroll left bottom transparent;
+    display: block;
+    height: 55px;
+    width: 120px;
+}
+a:link {
+    color: #1290CF;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+.header .menu_logout {
+    margin: -15px 0;
+    width: 500px;
+}
+.header .menu_logout li {
+    float: left;
+    font: Times New Roman;
+    height: 57px;
+    margin: 20 15px;
+    text-align: center;
+}
+.header #Search {
+    border-radius: 20px 20px 20px 20px;
+    height: 25px;
+    width: 270px;
+}
+.Default {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid green;
+    box-shadow: -2px 0 5px green;
+}
+.dropdown {
+    display: inline-block;
+    float: left;
+    margin-left: 8px;
+    margin-right: 5px;
+    outline: medium none;
+}
+#Search select {
+    width: 64px;
+}
+
+select {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    font: Times New Roman;
+    height: 24px;
+    min-width: 60px;
+    padding: 1px;
+}
+input, checkbox, select, img, label {
+    vertical-align: middle;
+}
+select option {
+    line-height: 24px;
+    padding: 1px 4px;
+}
+.dropselectbox {
+    cursor: pointer;
+    display: inline;
+}
+
+#Search input[type="text"] {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #999999;
+    font: Times New Roman;
+    height: 18px;
+    margin: 1px 0 0 10px;
+    outline: medium none;
+    padding: 0;
+    vertical-align: top;
+    width: 135px;
+}
+.input_txt, input[type="text"], input[type="password"], textarea {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    font: Times New Roman;
+    min-height: 20px;
+    outline: medium none;
+    padding: 2px 5px;
+}
+
+#Search input[type="submit"] {
+    box-shadow: none;
+    height: 22px;
+    width: 20px;
+}
+body input[type="submit"], input[type="button"] {
+    border: 1px solid green;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 2px 1px #EEEEEE;
+    cursor: pointer;
+    font: Times New Roman;
+    height: 30px;
+    padding: 2px 10px;
+}
+.header .dd.user_info {
+    float: right;
+    text-align: right;
+    white-space: nowrap;
+    width: 150px;
+    padding: 10px 0;
+}
+.wrap:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.wrap {
+    margin: 0 auto;
+    width: 980px;
+}
+ul#Submenu, .wrap, .footer, .cont {
+    margin: auto;
+    width: 980px;
+}
+.select_item {
+    background: none repeat scroll 0 0 #F5F5F5;
+    height:200px;
+    border: 1px solid #F0F0F0;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+.select_box .classes {
+    border-left: 1px dotted #FFFFFF;
+    float: left;
+    height: 200px;
+    padding: 0 10px;
+    width: 278px;
+}
+.hot_classes {
+    height: 150px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.select_box a:link {
+    color: #777777;
+}
+.select_box a:active{
+	color: blue;
+}
+
+.select_box a {
+    background: url("") no-repeat scroll right 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid #EEEEEE;
+    margin: 2px 5px 2px 0;
+    padding: 1px 20px 1px 5px;
+    white-space: nowrap;
+}
+.select_box .classes h3 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #EEEEEE;
+    margin: 5px 0;
+    padding: 2px 10px;
+}
+.select_box h3 {
+    font: 14px/20px 'Microsoft yahei';
+}
+.hover_area {
+    background: url("") no-repeat scroll right 12px transparent;
+    float: right;
+    height: 30px;
+    margin: -30px 0 0;
+    width: 60px;
+}
+.hover_area span {
+    padding: 0 10px;
+}
+.technology_set .hover_show {
+    height: 220px;
+    width: 900px;
+}
+
+.hover_show {
+
+   position:absolute; 
+   z-index:999;
+   filter: alpha(opacity=100); 
+   opacity: 1;
+   background:#FFFFFF;
+   margin-left: -200px;
+   margin-top:-10;
+}
+
+.technology_set .hover_show .list {
+    float: left;
+    height: 30px;
+    width: 800px;
+}
+.technology_set .hover_show .list.first h4 {
+    border-left: 0 none;
+}
+.technology_set .hover_show .list h4 {
+    background: url("") repeat scroll 0 0 #F5F5F5;
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #DDDDDD;
+    color: #999999;
+    text-align: center;
+}
+.technology_set .hover_show .list ul {
+
+}
+.technology_set .hover_show .list ul li {
+    float: left;
+    height: 25px;
+    width: 220px;
+}
+.technology_set .hover_show .list ul li {
+    float: left;
+    height: 25px;
+    width: 220px;
+}
+.technology_set .hover_show .list.selected ul {
+    background: none repeat scroll 0 0 #F9F9F9;
+    display: block;
+    height: 170px;
+    left: 50%;
+    margin-left: -450px;
+    padding: 10px;
+    position: absolute;
+    width: 880px;
+}
+.technology_set .hover_show .list ul {
+    display: none;
+}

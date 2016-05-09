@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	         http://www.springframework.org/schema/beans 
+	         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	         http://www.springframework.org/schema/aop
+	         http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/greenway?useUnicode=true&amp;characterEncoding=utf8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="wk123456"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+			<value>com/greenway/pojo/impl/Gro.hbm.xml</value>
+			<value>com/greenway/pojo/impl/Article.hbm.xml</value>
+			<value>com/greenway/pojo/impl/Pic.hbm.xml</value>
+			<value>
+				com/greenway/pojo/impl/UserGroupStructure.hbm.xml
+			</value>
+			<value>com/greenway/pojo/impl/User.hbm.xml</value>
+			<value>com/greenway/pojo/impl/Gentie.hbm.xml</value>
+			<value>com/greenway/pojo/impl/Message.hbm.xml</value>
+			<value>com/greenway/pojo/impl/LinkStore.hbm.xml</value>
+			<value>com/greenway/pojo/impl/Page.hbm.xml</value></list>
+		</property></bean>
+	<!-- dao -->
+	<bean id="GroDAO" class="com.greenway.pojo.impl.GroDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ArticleDAO" class="com.greenway.pojo.impl.ArticleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PicDAO" class="com.greenway.pojo.impl.PicDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserGroupStructureDAO"
+		class="com.greenway.pojo.impl.UserGroupStructureDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserDAO" class="com.greenway.pojo.impl.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GentieDAO" class="com.greenway.pojo.impl.GentieDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MessageDAO" class="com.greenway.pojo.impl.MessageDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- service -->
+	<bean name="userService" class="com.greenway.service.impl.UserService">
+	    <property name="userDAO">
+	        <ref bean="UserDAO"/>
+	    </property>
+	</bean>
+	<bean name="articleService" class="com.greenway.service.impl.ArticleService">
+	    <property name="articleDAO">
+	        <ref bean="ArticleDAO"/>
+	    </property>
+	</bean>
+	<bean name="groupService" class="com.greenway.service.impl.GroupService">
+	    <property name="groDao">
+	        <ref bean="GroDAO"/>
+	    </property>
+	</bean>
+	<bean name="pictureService" class="com.greenway.service.impl.PictureService">
+	    <property name="picDAO">
+	        <ref bean="PicDAO"/>
+	    </property>
+	</bean>
+	<bean name="gentieService" class="com.greenway.service.impl.GentieService">
+	    <property name="gentieDAO">
+	        <ref bean="GentieDAO"/>
+	    </property>
+	</bean>
+	<bean name="messageService" class="com.greenway.service.impl.MessageService">
+	    <property name="messageDAO">
+	        <ref bean="MessageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- action -->
+	<bean name="userAction" class="com.greenway.struts.action.impl.UserAction">
+	    <property name="userService">
+	        <ref bean="userService"/>
+	    </property>
+	    <property name="messageService">
+	        <ref bean="messageService"/>
+	    </property>
+	</bean>
+	<bean name="groupAction" class="com.greenway.struts.action.impl.GroupAction">
+	    <property name="groupService">
+	        <ref bean="groupService"/>
+	    </property>
+	    <property name="articleService">
+	        <ref bean="articleService"/>
+	    </property>
+	</bean>
+	<bean name="articleAction" class="com.greenway.struts.action.impl.ArticleAction">
+	    <property name="articleService">
+	        <ref bean="articleService"/>
+	    </property>
+	    <property name="gentieService">
+	        <ref bean="gentieService"/>
+	    </property>
+	</bean>
+	<bean name="testAction" class="com.greenway.struts.action.test.TestAction">
+	    
+	</bean>
+	<bean id="messageAction" class="com.greenway.struts.action.impl.MessageAction">
+	 
+		<property name="messageService">
+			<ref bean="messageService" />
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		
+	</bean>
+	
+	<bean name="timeLineActionAction" class="com.greenway.struts.action.impl.TimeLineAction">
+	</bean>
+	
+	<bean name="loginAction" class="com.greenway.struts.action.impl.LoginAction">
+	    <property name="userService">
+	        <ref bean="userService"/>
+	    </property>
+	</bean>
+	
+	<!-- spring aop 1 -->
+	<bean id="personTarget" class="com.greenway.pojo.impl.PersonImpl">
+	     <property name="name">
+	          <value>wangkang</value>
+	     </property>
+	     <property name="age">
+	          <value>26</value>
+	     </property>
+	</bean>
+	<bean id="myAdvice" class="com.greenway.springtest.MyBeforeAdvice"/>
+	<bean id="myAroundInterceptor" class="com.greenway.springtest.MyAroundInterceptor"/>
+    <bean id="runAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+         <property name="advice">
+              <bean class="com.greenway.springtest.MyAfterAdvice"></bean>
+         </property>
+         <property name="patterns">
+              <list>
+                   <value>.*run.*</value>
+              </list>
+         </property>
+    </bean>
+    
+    <bean id="person" class="org.springframework.aop.framework.ProxyFactoryBean">
+         <property name="proxyInterfaces">
+              <value>com.greenway.pojo.inter.Person</value>
+         </property>
+         <property name="target">
+              <ref local="personTarget"/>
+         </property>
+         <property name="interceptorNames">
+              <list>
+                   <value>runAdvisor</value>
+                   <value>myAdvice</value>
+                   <value>myAroundInterceptor</value>
+              </list>
+         </property>
+    </bean>
+    
+    <!-- spring aop 2 -->
+    <!-- 
+    <aop:config>
+         <aop:aspect id="TestAspect" ref="aspectBean">
+             <aop:pointcut expression="execution(* com.greenway.springtest.*.*(..))" id="businessService"/>
+             <aop:before pointcut-ref="businessService" method="doBefore"/>  
+             <aop:after pointcut-ref="businessService" method="doAfter"/>  
+             <aop:around pointcut-ref="businessService" method="doAround"/>  
+             <aop:after-throwing pointcut-ref="businessService" method="doThrowing" throwing="ex"/>
+         </aop:aspect>
+    </aop:config>
+    -->
+    <bean id="aspectBean" class="com.greenway.springtest.TestAspect"></bean>
+	<bean id="aService" class="com.greenway.springtest.AServiceImpl"></bean>
+	<bean id="bService" class="com.greenway.springtest.BServiceImpl"></bean>
+	
+	<!-- spring aop 3 -->
+	<!-- <bean class="com.greenway.springtest.SampleAdvice"></bean> -->
+	
+	<!-- spring ioc -->
+	<bean id="orderItem" class="com.greenway.springtest.injection.OrderItem">
+	     <property name="orderdec" value="item001"></property>
+	</bean>
+	<bean id="order" class="com.greenway.springtest.injection.Order">
+	     <property name="orderNum" value="order007"></property>
+	     <property name="orderItem" ref="orderItem"></property>
+	</bean>
+	
+	<bean id="order_1" class="com.greenway.springtest.injection.Order" autowire="byName">
+	     <property name="orderNum" value="order007"></property>
+	</bean>
+	
+	<bean id="order_2" class="com.greenway.springtest.injection.Order" autowire="byType">
+	     <property name="orderNum" value="order007"></property>
+	</bean>
+	
+	<bean id="order_3" class="com.greenway.springtest.injection.Order" autowire="constructor">
+	     <property name="orderNum" value="order007"></property>
+	</bean>
+	
+	<!-- spring aop 4 -->
+	<bean id="human" class="com.greenway.springtest.aop1.Human"></bean>
+	<bean id="sleepHelper" class="com.greenway.springtest.aop1.SleepHelper"></bean>
+	<bean id="sleepPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	     <property name="pattern" value=".*sleep"></property>
+	</bean>
+	<bean id="sleepHelperAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	     <property name="advice" ref="sleepHelper"></property>
+	     <property name="pointcut" ref="sleepPointcut"></property>
+	</bean>
+	<bean id="humanProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	     <property name="target" ref="human"></property>
+	     <property name="interceptorNames" value="sleepHelperAdvisor"></property>
+	     <property name="proxyInterfaces" value="com.greenway.springtest.aop1.Sleepable"></property>
+	</bean>
+	
+	<bean id="sleepAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	     <property name="advice" ref="sleepHelper"></property>
+	     <property name="pattern" value=".*sleep"></property>
+	</bean>
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>
+	 <!-- 
+	<bean id="sleepHelper1" class="com.greenway.springtest.aop1.SleepHelper1"></bean>
+	<aop:config>
+	     <aop:aspect ref="sleepHelper1">
+	          <aop:before method="beforeSleep" pointcut="execution(* *.sleep(..))"/>
+	          <aop:after method="afterSleep" pointcut="execution(* *.sleep(..))"/>
+	     </aop:aspect>
+	</aop:config>  -->
+	
+	<!-- spring aop 5 -->
+	<bean id="baseBusiness" class="com.greenway.springtest.aop2.BaseBusiness" />
+    
+    <bean id="baseBefore" class="com.greenway.springtest.aop2.BaseBeforeAdvice" />
+    <bean id="baseAfterReturn" class="com.greenway.springtest.aop2.BaseAfterReturnAdvice" />
+    <bean id="baseAfterThrows" class="com.greenway.springtest.aop2.BaseAfterThrowsAdvice" />
+    <bean id="baseAround" class="com.greenway.springtest.aop2.BaseAroundAdvice" />
+    
+    <bean id="pointcut" class="com.greenway.springtest.aop2.Pointcut" />
+    
+    <bean id="matchBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut">
+            <ref bean="pointcut" />
+        </property>
+        <property name="advice">
+            <ref bean="baseBefore" />
+        </property>
+    </bean>
+    
+    <bean id="businessProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.greenway.springtest.aop2.IBaseBusiness</value>
+        </property>
+
+        <property name="target">
+            <ref local="baseBusiness" />
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>matchBeforeAdvisor</value>
+                <value>baseAfterReturn</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="LinkStoreDAO"
+    	class="com.greenway.pojo.impl.LinkStoreDAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean>
+    <bean id="PageDAO" class="com.greenway.pojo.impl.PageDAO">
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory" />
+    	</property>
+    </bean></beans>

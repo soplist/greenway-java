@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<?xml-stylesheet type='text/xsl href='students.xsl'?>
+
+<resume>
+  <resume sn="01">
+    <name>zhangsan</name>
+    <age>20</age>
+  </resume>
+  <resume sn="02">
+    <name>lisi</name>
+    <age>18</age>
+  </resume>
+</resume>

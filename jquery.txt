@@ -1,0 +1,12 @@
+$.post('text.action',{....},function(datas){
+        var name=datas.data[0].name;
+
+});
+
+
+$.post('text.action',{....},function(datas){
+        $.each(datas,function(index,value){
+                var name=value.name;
+
+})
+});

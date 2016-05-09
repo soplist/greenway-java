@@ -1,0 +1,14 @@
+simple factory:
+build the object which you need
+build pattern:
+build the build factory you want
+sarategy:
+depart the algorithm and the responsibility of use algorithm 
+factory method pattern:
+point the factory which you used to build the object you need,extends the simple factory
+sigleton pattern:
+get the only object
+prototype pattern:
+must implements Cloneable interface,create child class's object,call parent class clone method.
+command patterm:
+According to the different request,response different execute
